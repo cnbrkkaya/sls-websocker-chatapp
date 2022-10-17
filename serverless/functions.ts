@@ -11,6 +11,16 @@ const functions: AWS["functions"] = {
       },
     ],
   },
+  joinRoom: {
+    handler: "src/functions/joinRoom/index.handler",
+    events: [
+      {
+        websocket: {
+          route: "joinRoom",
+        },
+      },
+    ],
+  },
 };
 
 export default functions;
