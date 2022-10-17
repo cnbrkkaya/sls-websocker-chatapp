@@ -20,16 +20,18 @@ export const websocket = {
     domainName: string;
     stage: string;
   }) => {
+    // Creating Client
     const client = new ApiGatewayManagementApiClient({
       endpoint: `https://${domainName}/${stage}`,
     });
-
+    // Prepare params and create the command
     const params: PostToConnectionCommandInput = {
       Data: JSON.stringify(data) as any,
       ConnectionId: connectionId,
     };
     const command = new PostToConnectionCommand(params);
 
+    //Send the request
     return client.send(command);
   },
 };

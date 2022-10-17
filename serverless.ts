@@ -10,19 +10,18 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: "aws",
     runtime: "nodejs14.x",
+    region: "eu-central-1",
     profile: "sls-profile-1",
     iamRoleStatements: [
       {
         Effect: "Allow",
-        Action: ["dynamodb:*"],
+        Action: "dynamodb:*",
         Resource: [
           "arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.roomConnectionTable}",
           "arn:aws:dynamodb:${self:provider.region}:${aws:accountId}:table/${self:custom.roomConnectionTable}/index/index1",
         ],
       },
     ],
-
-    region: "eu-central-1",
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
