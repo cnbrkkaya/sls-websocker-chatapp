@@ -43,7 +43,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       return formatJSONResponse({});
     }
 
-    const { name, roomCode } = existingUser;
+    const { roomCode } = existingUser;
 
     // Function Body - check if the roomCode exists
     const roomUsers = await dynamo.query<UserConnectionRecord>({
@@ -67,7 +67,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       });
     });
 
-    Promise.all(messagePromiseArr);
+    await Promise.all(messagePromiseArr);
     //Return
     return formatJSONResponse({});
   } catch (error) {

@@ -31,6 +31,16 @@ const functions: AWS["functions"] = {
       },
     ],
   },
+  disconnect: {
+    handler: "src/functions/disconnect/index.handler",
+    events: [
+      {
+        websocket: {
+          route: "$disconnect",
+        },
+      },
+    ],
+  },
 };
 
 export default functions;
